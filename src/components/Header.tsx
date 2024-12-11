@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
-const Container = styled.header`
-  background-color: #fff;
+import { NavLink } from 'react-router-dom';
+
+const StyledHeader = styled.header`
+  background-color: #ffffff;
   height: 80px;
   justify-content: center;
 `;
-const StyledHeader = styled.div`
+
+const Container = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
@@ -18,14 +21,28 @@ const StyledHeader = styled.div`
   margin-right: auto;
   padding-left: 20px;
   padding-right: 20px;
-`;
-class Header extends Component {
-  render() {
-    return (
-      <Container>
-        <StyledHeader>Hi</StyledHeader>
-      </Container>
-    );
+  font-size: 1.5rem;
+  justify-content: flex-end;
+  .active {
+    color: #ff4500;
   }
-}
+`;
+
+type HeaderProps = {
+  label: string;
+};
+
+const Header: FC<HeaderProps> = ({ label }) => {
+  return (
+    <StyledHeader>
+      <Container>
+        <h1>{label}</h1>
+        <Container>
+          <NavLink to="/">Products</NavLink>
+        </Container>
+      </Container>
+    </StyledHeader>
+  );
+};
+
 export default Header;
